@@ -7,14 +7,10 @@ export function Accordion(props: AccordionPropsType) {
   console.log('Accordion rendered')
   return (
     <div>
-      {props.collapsed ? (
-        <AccordionTitle title={props.titleValue}/>
-      ) : (
       <>
         <AccordionTitle title={props.titleValue}/>  
-        <AccordionBody />
+        { !props.collapsed && <AccordionBody />}
       </>
-      )}
     </div>
   )
 }
