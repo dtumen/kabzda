@@ -1,17 +1,25 @@
-import { MouseEvent, useState } from 'react'
-
-type ValueNumber = 0 | 1 | 2 | 3 | 4 | 5;
+import { useState } from 'react'
 
 export function UnControlledRating() {
 
-  const [value, setValue] = useState<ValueNumber>(0);
-
-  const setValueHandler = (e: MouseEvent<HTMLButtonElement>) => {
-    const newValue = Number(e.currentTarget.textContent);
-    if (newValue >= 0 && newValue <= 5) {
-      setValue(newValue as ValueNumber);
-    }
+  type StarsType = {
+    id: number
+    selected: boolean
   }
+
+  const [stars, setStars] = useState<StarsType[]>([
+    {id: 1, selected: false},
+    {id: 2, selected: false},
+    {id: 3, selected: false},
+    {id: 4, selected: false},
+    {id: 5, selected: false},
+  ])
+
+  const onClickStarHandler = (id: number) => {
+    const newStars = stars.map(s => ({ id: s.id, selected: s.id <= id }));
+    setStars([...newStars]);
+  }
+
 
   const containerStyle = {
     marginTop: '20px'
@@ -19,29 +27,22 @@ export function UnControlledRating() {
 
   return (
     <div style={containerStyle}>
-      <Star selected={value > 0} />
-      <button onClick={setValueHandler}>1</button>
-      <Star selected={value > 1} />
-      <button onClick={setValueHandler}>2</button>
-      <Star selected={value > 2} />
-      <button onClick={setValueHandler}>3</button>
-      <Star selected={value > 3} />
-      <button onClick={setValueHandler}>4</button>
-      <Star selected={value > 4} />
-      <button onClick={setValueHandler}>5</button>
+      {stars.map(s => <Star key={s.id} id={s.id} selected={s.selected} onClickStarHandler={onClickStarHandler}/>)}
     </div>
   )
 }
 
 type StarPropsType = {
+  id: number
   selected: boolean
+  onClickStarHandler: (id: number) => void;
 }
 
-function Star({ selected }: StarPropsType) {
+function Star({ selected, onClickStarHandler, id }: StarPropsType) {
   console.log('Star rendered')
 
   return (
-    <span>
+    <span onClick={() => onClickStarHandler(id)}>
       {selected ? (<b>star </b>) : 'star '}
     </span>
   )

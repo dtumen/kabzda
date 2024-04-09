@@ -10,7 +10,7 @@ function App() {
   console.log('App rendered');
 
   return (
-    <div>
+    <div className='App'>
       <PageTitle title={'This is APP component'} />
       <PageTitle title={'Hello, my Friend!'} />
       Article 1
