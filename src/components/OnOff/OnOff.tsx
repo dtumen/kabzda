@@ -1,17 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-type OnOffPropsType = {
-  toggler: boolean
-}
+const OnOff = () => {
 
-const OnOff = ({ toggler }: OnOffPropsType) => {
-  let bcgColor = toggler ? 'green' : 'red' ;
+  const [toggler, setToggler] = useState<boolean>(false);
+
+  const changeTogglerHandler = () => setToggler(prev => !prev);
+
+  const container = {
+    marginTop: '20px',
+    marginLeft: '20px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '5px',
+  }
+
+  const onStyle = {
+    width: '30px',
+    height: '30px',
+    border: '1px solid black',
+    backgroundColor: toggler ? 'green' : 'white',
+  };
+
+  const offStyle = {
+    width: '30px',
+    height: '30px',
+    border: '1px solid black',
+    backgroundColor: !toggler ? 'red' : 'white',
+  };
+
+  const indicatorStyle = {
+    width: '15px',
+    height: '15px',
+    borderRadius: '5px',
+    border: '1px solid black',
+    backgroundColor: toggler ? 'green' : 'red',
+  };
 
   return (
-    <div style={{ display: 'flex', gap: '5px' }}>
-      <div style={{ backgroundColor: toggler && 'green' }}>On</div>
-      <div style={{ backgroundColor: !toggler && 'red' }}>Off</div>
-      <button style={{ backgroundColor: bcgColor, borderRadius: '50%', }}></button>
+    <div style={container}>
+      <div style={onStyle}>On</div>
+      <div style={offStyle}>Off</div>
+      <button style={indicatorStyle} onClick={changeTogglerHandler}></button>
     </div>
   )
 }
