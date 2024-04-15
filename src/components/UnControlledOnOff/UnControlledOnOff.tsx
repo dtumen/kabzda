@@ -1,13 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-type OnOffPropsType = {
-  toggler: boolean
-  changeTogglerHandler: () => void
-}
+const UnControlled = () => {
 
-const OnOff = (props: OnOffPropsType) => {
+  const [toggler, setToggler] = useState<boolean>(false);
 
-  const { toggler, changeTogglerHandler } = props;
+  const changeTogglerHandler = () => setToggler(prev => !prev);
 
   const container = {
     marginTop: '20px',
@@ -48,4 +45,4 @@ const OnOff = (props: OnOffPropsType) => {
   )
 }
 
-export default OnOff;
+export default UnControlled;
