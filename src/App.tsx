@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import './App.css';
-import { Accordion } from './components/Accordion/Accordion';
-import { Rating } from './components/Rating/Rating';
+import {Accordion} from './components/Accordion/Accordion';
+import {Rating} from './components/Rating/Rating';
 import OnOff from './components/UnControlledOnOff/UnControlledOnOff';
 import UnControlledAccordion from './components/UnControlledAccordion/UnControlledAccordion';
-import { UnControlledRating } from './components/UnControlledRating/UnControlledRating';
+import {UnControlledRating} from './components/UnControlledRating/UnControlledRating';
 import UnConOnOff from './components/OnOff/OnOff';
 
 function App() {
-  console.log('App rendered');
+    console.log('App rendered');
 
-  const [toggler, setToggler] = useState<boolean>(false);
-  const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false);
+    const [toggler, setToggler] = useState<boolean>(false);
+    const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false);
 
-  const changeTogglerHandler = () => setToggler(prev => !prev);
-  // const changeCollapsed = () => setAccordionCollapsed(prev => !prev);
+    const changeTogglerHandler = () => setToggler(prev => !prev);
+    // const changeCollapsed = () => setAccordionCollapsed(prev => !prev);
 
-  return (
-    <div className='App'>
-      {/* <PageTitle title={'This is APP component'} />
+    return (
+        <div className="App">
+            {/* <PageTitle title={'This is APP component'} />
       <PageTitle title={'Hello, my Friend!'} />
       Article 1
       <Rating value={2} />
@@ -36,25 +36,22 @@ function App() {
       <UnControlledAccordion titleValue={'Menu 2'}/>
       <UnControlledAccordion titleValue={'Users 2'}/> */}
 
-      <UnConOnOff toggler={toggler} changeTogglerHandler={changeTogglerHandler} />
-      <Accordion titleValue={'Users'} collapsed={accordionCollapsed} onChange={() => setAccordionCollapsed(!accordionCollapsed)} />
-    </div>
-  );
+            <UnConOnOff toggler={toggler} changeTogglerHandler={changeTogglerHandler}/>
+            <Accordion titleValue={'Users'} collapsed={accordionCollapsed}
+                       onChange={() => setAccordionCollapsed(!accordionCollapsed)}/>
+        </div>
+    );
 }
 
 type PageTitlePropsType = {
-  title: string
+    title: string
 }
 
-function PageTitle({ title }: PageTitlePropsType) {
-  console.log('AppTitle rendered')
-  return <h2>{title}</h2>
+function PageTitle({title}: PageTitlePropsType) {
+    console.log('AppTitle rendered')
+    return <h2>{title}</h2>
 }
-
-
-
-
-
 
 
 export default App;
+
