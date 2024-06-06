@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { Accordion } from './Accordion';
@@ -9,15 +9,6 @@ const meta: Meta<typeof Accordion> = {
 };
 
 export default meta;
-
-type Story = StoryObj<typeof Accordion>
-export const FirstControlledStory: Story = {
-    args: {
-        titleValue: 'FirstControlledStory',
-        collapsed: false,
-        onChange: action('First Accordion Toggled!'),
-    }
-}
 
 const onChangeHandler = action('some text');
 export const CollapsedAccordion = () => {

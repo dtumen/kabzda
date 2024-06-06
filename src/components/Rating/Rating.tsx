@@ -1,30 +1,43 @@
+import React, { MouseEvent } from 'react';
+import { RatingValueType } from '../../App';
+
 type RatingPropsType = {
-  value: 0 | 1 | 2 | 3 | 4 | 5
+  rating: RatingValueType;
+  handleRatingChange: (value: RatingValueType) => void;
 }
 
-export function Rating({ value }: RatingPropsType) {
+export const Rating: React.FC<RatingPropsType> = ({ rating, handleRatingChange }) => {
   console.log('Rating rendered')
 
   return (
     <div>
-      <Star selected={ value > 0 }/>
-      <Star selected={ value > 1 }/>
-      <Star selected={ value > 2 }/>
-      <Star selected={ value > 3 }/>
-      <Star selected={ value > 4 }/>
+        {
+            [1, 2, 3, 4, 5].map(value => (
+                <Star key={value}
+                      value={value as RatingValueType}
+                      selected={rating >= value}
+                      onClick={handleRatingChange} />
+            ))
+        }
     </div>
   )
 }
 
-type StarPropsType = {
-  selected: boolean
+export type StarPropsType = {
+  selected: boolean;
+  value: RatingValueType;
+  onClick: (value: RatingValueType) => void;
 }
 
-function Star({ selected }: StarPropsType) {
+export function Star({ selected, onClick, value }: StarPropsType) {
   console.log('Star rendered')
 
+    const handleClick = (e: MouseEvent<HTMLSpanElement>) => {
+      onClick(value)
+    }
+
   return (
-    <span>
+    <span onClick={handleClick}>
       { selected ? (<b>star </b>) : 'star '  }
     </span>
   )

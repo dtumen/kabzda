@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 
 const UnControlled = () => {
 
-  const [toggler, setToggler] = useState<boolean>(false);
+  const [isToggle, setToggle] = useState<boolean>(false);
 
-  const changeTogglerHandler = () => setToggler(prev => !prev);
+  const handleToggleChange = () => setToggle(prev => !prev);
 
   const container = {
     marginTop: '20px',
@@ -18,14 +18,14 @@ const UnControlled = () => {
     width: '30px',
     height: '30px',
     border: '1px solid black',
-    backgroundColor: toggler ? 'green' : 'white',
+    backgroundColor: isToggle ? 'green' : 'white',
   };
 
   const offStyle = {
     width: '30px',
     height: '30px',
     border: '1px solid black',
-    backgroundColor: !toggler ? 'red' : 'white',
+    backgroundColor: !isToggle ? 'red' : 'white',
   };
 
   const indicatorStyle = {
@@ -33,14 +33,14 @@ const UnControlled = () => {
     height: '15px',
     borderRadius: '5px',
     border: '1px solid black',
-    backgroundColor: toggler ? 'green' : 'red',
+    backgroundColor: isToggle ? 'green' : 'red',
   };
 
   return (
     <div style={container}>
       <div style={onStyle}>On</div>
       <div style={offStyle}>Off</div>
-      <button style={indicatorStyle} onClick={changeTogglerHandler}></button>
+      <button style={indicatorStyle} onClick={handleToggleChange}></button>
     </div>
   )
 }

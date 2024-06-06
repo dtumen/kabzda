@@ -1,13 +1,13 @@
 import React from 'react';
 
 type OnOffPropsType = {
-  toggler: boolean
-  changeTogglerHandler: () => void
+  isToggle: boolean
+  handleToggleChange: () => void
 }
 
 const OnOff = (props: OnOffPropsType) => {
 
-  const { toggler, changeTogglerHandler } = props;
+  const { isToggle, handleToggleChange } = props;
 
   const container = {
     marginTop: '20px',
@@ -21,14 +21,14 @@ const OnOff = (props: OnOffPropsType) => {
     width: '30px',
     height: '30px',
     border: '1px solid black',
-    backgroundColor: toggler ? 'green' : 'white',
+    backgroundColor: isToggle ? 'green' : 'white',
   };
 
   const offStyle = {
     width: '30px',
     height: '30px',
     border: '1px solid black',
-    backgroundColor: !toggler ? 'red' : 'white',
+    backgroundColor: !isToggle ? 'red' : 'white',
   };
 
   const indicatorStyle = {
@@ -36,14 +36,14 @@ const OnOff = (props: OnOffPropsType) => {
     height: '15px',
     borderRadius: '5px',
     border: '1px solid black',
-    backgroundColor: toggler ? 'green' : 'red',
+    backgroundColor: isToggle ? 'green' : 'red',
   };
 
   return (
     <div style={container}>
       <div style={onStyle}>On</div>
       <div style={offStyle}>Off</div>
-      <button style={indicatorStyle} onClick={changeTogglerHandler}></button>
+      <button style={indicatorStyle} onClick={handleToggleChange}></button>
     </div>
   )
 }

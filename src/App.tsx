@@ -2,43 +2,34 @@ import React, {useState} from 'react';
 import './App.css';
 import {Accordion} from './components/Accordion/Accordion';
 import {Rating} from './components/Rating/Rating';
-import OnOff from './components/UnControlledOnOff/UnControlledOnOff';
-import UnControlledAccordion from './components/UnControlledAccordion/UnControlledAccordion';
-import {UnControlledRating} from './components/UnControlledRating/UnControlledRating';
 import UnConOnOff from './components/OnOff/OnOff';
+
+export enum RatingValueType {
+    Zero = 0,
+    One,
+    Two,
+    Three,
+    Four,
+    Five
+}
 
 function App() {
     console.log('App rendered');
 
-    const [toggler, setToggler] = useState<boolean>(false);
-    const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false);
+    const [rating, setRating] = useState<RatingValueType>(RatingValueType.Zero);
+    const [isToggle, setToggle] = useState<boolean>(false);
+    const [isAccordionCollapsed, setIsAccordionCollapsed] = useState<boolean>(false);
 
-    const changeTogglerHandler = () => setToggler(prev => !prev);
-    // const changeCollapsed = () => setAccordionCollapsed(prev => !prev);
+    const handleRatingChange = (value: RatingValueType) => setRating(value);
+    const handleToggleChange = () => setToggle(!isToggle);
+    const handleCollapsedChange = () => setIsAccordionCollapsed(prev => !prev);
 
     return (
         <div className="App">
-            {/* <PageTitle title={'This is APP component'} />
-      <PageTitle title={'Hello, my Friend!'} />
-      Article 1
-      <Rating value={2} />
-      <Accordion titleValue={'Menu'} collapsed={true} />
-      <Accordion titleValue={'Users'} collapsed={false} />
-      Article 2
-      <Rating value={3} />
-
-      <OnOff/>
-      <OnOff/>
-      <OnOff/>
-      <hr />
-      Article 3
-      <UnControlledRating/>
-      <UnControlledAccordion titleValue={'Menu 2'}/>
-      <UnControlledAccordion titleValue={'Users 2'}/> */}
-
-            <UnConOnOff toggler={toggler} changeTogglerHandler={changeTogglerHandler}/>
-            <Accordion titleValue={'Users'} collapsed={accordionCollapsed}
-                       onChange={() => setAccordionCollapsed(!accordionCollapsed)}/>
+            <Rating rating={rating} handleRatingChange={handleRatingChange}/>
+            <UnConOnOff isToggle={isToggle} handleToggleChange={handleToggleChange}/>
+            <Accordion titleValue={'Users'} collapsed={isAccordionCollapsed}
+                       onChange={handleCollapsedChange}/>
         </div>
     );
 }
@@ -47,9 +38,9 @@ type PageTitlePropsType = {
     title: string
 }
 
-function PageTitle({title}: PageTitlePropsType) {
-    console.log('AppTitle rendered')
-    return <h2>{title}</h2>
+const PageTitle: React.FC<PageTitlePropsType> = ({ title }) => {
+    console.log('AppTitle rendered');
+    return <h2>{title}</h2>;
 }
 
 
