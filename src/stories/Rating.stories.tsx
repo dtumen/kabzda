@@ -1,9 +1,9 @@
 import type { Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import {Rating} from './Rating';
+import {Rating} from '../components/Rating/Rating';
 import React, {useState} from 'react';
-import {RatingValueType} from '../../App';
+import {RatingValueType} from '../App';
 
 const meta: Meta<typeof Rating> = {
     component: Rating,

@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react';
 
-import UnControlledAccordion from './UnControlledAccordion';
+import UnControlledAccordion from '../components/UnControlledAccordion/UnControlledAccordion';
 
 const meta: Meta<typeof UnControlledAccordion> = {
     component: UnControlledAccordion,
