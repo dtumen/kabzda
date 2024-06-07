@@ -1,7 +1,6 @@
 import type {Meta} from '@storybook/react';
 import {TestComponent} from '../components/TestComponent/TestComponent';
 import {ChangeEvent, useRef, useState} from 'react';
-import {action} from '@storybook/addon-actions';
 
 const meta: Meta<typeof TestComponent> = {
     component: TestComponent,
