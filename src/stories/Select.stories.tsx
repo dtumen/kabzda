@@ -37,11 +37,12 @@ export const SelectIsOpen = () => {
 }
 
 export const ControlledSelect = () => {
-    const [selectValue, setSelectValue] = useState('none');
-    const [isSelectCollapsed, setSelectCollapsed] = useState(true);
+    const [selectValue, setSelectValue] = useState<string>('none');
+    const [isSelectCollapsed, setSelectCollapsed] = useState<boolean>(true);
+    const [isFirstRender, serIsFirstRender] = useState(true);
 
     const handleCollapsedSelectChange = () => {
-        setSelectCollapsed(!isSelectCollapsed)
+        setSelectCollapsed(prev => !prev);
     }
 
     const handleClickOption = (value: string) => {
@@ -49,8 +50,14 @@ export const ControlledSelect = () => {
     }
 
     useEffect(() => {
+
+        if (isFirstRender) {
+            serIsFirstRender(false);
+            return;
+        }
+
         let timeoutId = setTimeout(() => {
-            setSelectCollapsed(!isSelectCollapsed)
+            setSelectCollapsed(prev => !prev);
         }, 0);
 
         return () => clearTimeout(timeoutId)

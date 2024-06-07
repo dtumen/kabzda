@@ -37,8 +37,14 @@ function App() {
     const [isAccordionCollapsed, setIsAccordionCollapsed] = useState<boolean>(false);
     const [selectValue, setSelectValue] = useState(defaultSelectValue);
     const [isSelectCollapsed, setSelectCollapsed] = useState(true);
+    const [isFirstRender, serIsFirstRender] = useState(true);
 
     useEffect(() => {
+        if (isFirstRender) {
+            serIsFirstRender(false);
+            return;
+        }
+
         let timeoutId = setTimeout(() => {
             setSelectCollapsed(!isSelectCollapsed)
         }, 0);
@@ -80,15 +86,6 @@ function App() {
             />
         </div>
     );
-}
-
-type PageTitlePropsType = {
-    title: string
-}
-
-const PageTitle: React.FC<PageTitlePropsType> = ({title}) => {
-    console.log('AppTitle rendered');
-    return <h2>{title}</h2>;
 }
 
 
