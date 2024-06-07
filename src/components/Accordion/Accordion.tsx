@@ -1,4 +1,4 @@
-export type ItemsType = {
+export type ItemType = {
     title: string
     value: any
 }
@@ -7,7 +7,7 @@ type AccordionPropsType = {
     titleValue: string
     collapsed: boolean
     handleCollapsedChange: () => void
-    items: ItemsType[]
+    items: ItemType[]
     onClick: (value: any) => void
 }
 
@@ -34,7 +34,7 @@ function AccordionTitle({title, handleCollapsedChange}: AccordionTitlePropsType)
 }
 
 type AccordionBodyPropsType = {
-    items: ItemsType[]
+    items: ItemType[]
     onClick: (value: any) => void
 }
 
@@ -43,7 +43,7 @@ function AccordionBody(props: AccordionBodyPropsType) {
     return (
         <ul>
             {
-                props?.items.map((item: ItemsType, i: number) => (
+                props?.items.map((item: ItemType, i: number) => (
                     <li key={i} onClick={() => props.onClick(item.value)} >{item.title}</li>
                 ))
             }
