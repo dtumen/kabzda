@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import './App.css';
-import {Accordion} from './components/Accordion/Accordion';
+import {Accordion, ItemsType} from './components/Accordion/Accordion';
 import {Rating} from './components/Rating/Rating';
-import UnConOnOff from './components/OnOff/OnOff';
+import OnOff from './components/OnOff/OnOff';
 
 export enum RatingValueType {
     Zero = 0,
@@ -13,6 +13,11 @@ export enum RatingValueType {
     Five
 }
 
+const accordionItems: ItemsType[] = [
+    { title: 'JavaScript', value: 'JS' },
+    { title: 'TypeScript', value: 'TS' },
+    { title: 'React', value: 'React' },
+];
 function App() {
     console.log('App rendered');
 
@@ -24,12 +29,17 @@ function App() {
     const handleToggleChange = () => setToggle(!isToggle);
     const handleCollapsedChange = () => setIsAccordionCollapsed(prev => !prev);
 
+    const handleClick = (value: any) => alert(value);
+
     return (
         <div className="App">
             <Rating rating={rating} handleRatingChange={handleRatingChange}/>
-            <UnConOnOff isToggle={isToggle} handleToggleChange={handleToggleChange}/>
+            <OnOff isToggle={isToggle} handleToggleChange={handleToggleChange}/>
             <Accordion titleValue={'Users'} collapsed={isAccordionCollapsed}
-                       onChange={handleCollapsedChange}/>
+                       items={accordionItems}
+                       handleCollapsedChange={handleCollapsedChange}
+                       onClick={handleClick}
+            />
         </div>
     );
 }
@@ -38,7 +48,7 @@ type PageTitlePropsType = {
     title: string
 }
 
-const PageTitle: React.FC<PageTitlePropsType> = ({ title }) => {
+const PageTitle: React.FC<PageTitlePropsType> = ({title}) => {
     console.log('AppTitle rendered');
     return <h2>{title}</h2>;
 }

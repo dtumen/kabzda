@@ -10,13 +10,21 @@ const meta: Meta<typeof Accordion> = {
 
 export default meta;
 
+const accordionItems = [
+    { title: 'JavaScript', value: 'JS' },
+    { title: 'TypeScript', value: 'TS' },
+    { title: 'React', value: 'React' },
+];
+
 const onChangeHandler = action('some text');
 export const CollapsedAccordion = () => {
     return (
         <Accordion
             titleValue={'Collapsed'}
             collapsed={true}
-            onChange={onChangeHandler}
+            handleCollapsedChange={onChangeHandler}
+            items={accordionItems}
+            onClick={() => {}}
         />
     )
 }
@@ -26,23 +34,31 @@ export const OpenedAccordion = () => {
         <Accordion
             titleValue={'Open'}
             collapsed={false}
-            onChange={() => {}}
+            handleCollapsedChange={() => {}}
+            items={accordionItems}
+            onClick={() => {}}
         />
     )
 }
 
-export const DemoAccordion = () => {
+export const ControlledAccordion = () => {
     const [isCollapsed, setIsCollapsed] = useState(true);
 
     const collapsedHandler = () => {
         setIsCollapsed(!isCollapsed);
     }
 
+    const handleClick = (value: any) => {
+        alert(value)
+    }
+
     return (
         <Accordion
-            titleValue={'DemoCollaped'}
+            titleValue={'Skills'}
             collapsed={isCollapsed}
-            onChange={collapsedHandler}
+            handleCollapsedChange={collapsedHandler}
+            items={accordionItems}
+            onClick={handleClick}
         />
     )
 }

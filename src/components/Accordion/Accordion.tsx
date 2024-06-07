@@ -1,38 +1,52 @@
+export type ItemsType = {
+    title: string
+    value: any
+}
+
 type AccordionPropsType = {
-  titleValue: string
-  collapsed: boolean
-  onChange: () => void
+    titleValue: string
+    collapsed: boolean
+    handleCollapsedChange: () => void
+    items: ItemsType[]
+    onClick: (value: any) => void
 }
 
 export function Accordion(props: AccordionPropsType) {
-  const { collapsed, onChange, titleValue } = props;
-  return (
-    <div>
-      <>
-        <AccordionTitle title={titleValue} onChange={onChange}/>  
-        { !collapsed && <AccordionBody />}
-      </>
-    </div>
-  )
+    const {collapsed, handleCollapsedChange, titleValue, items} = props;
+    return (
+        <div>
+            <>
+                <AccordionTitle title={titleValue} handleCollapsedChange={handleCollapsedChange}/>
+                {!collapsed && <AccordionBody items={items} onClick={props.onClick} />}
+            </>
+        </div>
+    )
 }
 
 type AccordionTitlePropsType = {
-  title: string
-  onChange: () => void
+    title: string
+    handleCollapsedChange: () => void
 }
 
-function AccordionTitle({ title, onChange }: AccordionTitlePropsType) {
-  console.log('AccordionTitle rendered')
-  return <h3 onClick={onChange} >{title}</h3>
+function AccordionTitle({title, handleCollapsedChange}: AccordionTitlePropsType) {
+    console.log('AccordionTitle rendered')
+    return <h3 onClick={handleCollapsedChange}>{title}</h3>
 }
 
-function AccordionBody() {
-  console.log('AccordionBody rendered')
-  return (
-    <ul>
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
-    </ul>
-  )
+type AccordionBodyPropsType = {
+    items: ItemsType[]
+    onClick: (value: any) => void
+}
+
+function AccordionBody(props: AccordionBodyPropsType) {
+    console.log('AccordionBody rendered')
+    return (
+        <ul>
+            {
+                props?.items.map((item: ItemsType, i: number) => (
+                    <li key={i} onClick={() => props.onClick(item.value)} >{item.title}</li>
+                ))
+            }
+        </ul>
+    )
 }
