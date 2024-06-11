@@ -1,10 +1,10 @@
-type ActionType = {
+export type ActionType = {
     type: string
 }
 
 export const SET_COLLAPSED = 'SET-COLLAPSED';
 
-type StateType = {
+export type StateType = {
     collapsed: boolean
 }
 
