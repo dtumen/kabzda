@@ -10,13 +10,6 @@ const meta: Meta<typeof Select> = {
 
 export default meta;
 
-const selectItems: ItemType[] = [
-    {title: 'none', value: 0},
-    {title: 'Kiev', value: 1},
-    {title: 'Minsk', value: 2},
-    {title: 'Moscow', value: 3},
-]
-
 export const SelectCollapsed = () => {
     return (
         <>
@@ -40,6 +33,13 @@ export const ControlledSelect = () => {
     const [selectValue, setSelectValue] = useState<string>('none');
     const [isSelectCollapsed, setSelectCollapsed] = useState<boolean>(true);
     const [isFirstRender, serIsFirstRender] = useState(true);
+
+    const selectItems: ItemType[] = [
+        {title: 'none', value: 0},
+        {title: 'Kiev', value: 1},
+        {title: 'Minsk', value: 2},
+        {title: 'Moscow', value: 3},
+    ]
 
     const handleCollapsedSelectChange = () => {
         setSelectCollapsed(prev => !prev);

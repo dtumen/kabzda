@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React, {useReducer} from 'react';
+import {reducer, SET_COLLAPSED} from './reducer';
 
 type PropsType = {
   titleValue: string
 }
 
 const UnControlledAccordion = (props: PropsType) => {
-  const [collapsed, setCollapsed] = useState(true);
-
-  const setCollapsedHandler = () => setCollapsed(prev => !prev);
+  // const [collapsed, setCollapsed] = useState(true);
+    const [state, dispatch] = useReducer(reducer, {collapsed: true});
+  const setCollapsedHandler = () => dispatch({type: SET_COLLAPSED});
 
   return (
     <div>
       <>
         <AccordionTitle title={props.titleValue} setCollapsedHandler={setCollapsedHandler} />
-        {!collapsed && <AccordionBody />}  
+        {!state.collapsed && <AccordionBody />}
       </>
     </div>
   );

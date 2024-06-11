@@ -4,6 +4,7 @@ import {Accordion, ItemType} from './components/Accordion/Accordion';
 import {Rating} from './components/Rating/Rating';
 import OnOff from './components/OnOff/OnOff';
 import {Select} from './components/Select/Select';
+import UnControlledAccordion from './components/UnControlledAccordion/UnControlledAccordion';
 
 export enum RatingValueType {
     Zero = 0,
@@ -84,6 +85,8 @@ function App() {
                 handleCollapsedSelectChange={handleCollapsedSelectChange}
                 handleClickOption={handleClickOption}
             />
+
+            <UnControlledAccordion titleValue={'Users'} />
         </div>
     );
 }
