@@ -14,3 +14,14 @@ test('reducer should change value to opposite value', () => {
     expect(state.collapsed).toBeFalsy();
     expect(newState.collapsed).toBeTruthy();
 })
+
+test('reducer should return error if action is not correct', () => {
+
+    let state: StateType = {
+        collapsed: false,
+    }
+
+    expect(() => reducer(state, {
+        type: 'FAKE_ACTION'
+    })).toThrowError();
+})
