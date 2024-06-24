@@ -84,7 +84,6 @@ export const SetIntervalExample: Story = {
 
     render: () => {
         const [counter, setCounter] = useState(10);
-        const [fake, setFake] = useState(0);
 
         console.log('SetTimeout Example');
 
