@@ -1,7 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react';
 
 import {useEffect, useState, CSSProperties} from 'react';
-import {clearInterval} from 'node:timers';
 
 const meta: Meta = {
     title: 'React/useEffect',
@@ -74,6 +73,42 @@ export const SetTimeoutExample: Story = {
                 <button onClick={() => setCounter(prev => prev + 1)}>counter+</button>
                 <button onClick={() => setFake(prev => prev + 1)}>fake+</button>
             </div>
+        )
+    }
+}
+
+export const SetIntervalExample: Story = {
+    parameters: {
+        layout: 'centered',
+    },
+
+    render: () => {
+        const [counter, setCounter] = useState(10);
+        const [fake, setFake] = useState(0);
+
+        console.log('SetTimeout Example');
+
+        useEffect(() => {
+            let timeoutId = setInterval(() => {
+                setCounter(prev => prev - 1);
+            }, 1000)
+
+            if (counter === 0) clearInterval(timeoutId);
+
+            return () => clearInterval(timeoutId);
+
+        }, [counter]);
+
+        return (
+            <>
+                <div>
+                    counter: {counter},
+                </div>
+
+                <div>
+                    fake: {fake}
+                </div>
+            </>
         )
     }
 }
