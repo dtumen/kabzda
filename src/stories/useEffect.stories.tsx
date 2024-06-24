@@ -1,6 +1,7 @@
 import type {Meta, StoryObj} from '@storybook/react';
 
 import {useEffect, useState, CSSProperties} from 'react';
+import {clearInterval} from 'node:timers';
 
 const meta: Meta = {
     title: 'React/useEffect',
@@ -27,17 +28,17 @@ export const Counter: Story = {
         return (
             <div style={styles.container}>
                 <div>
-                    <button style={styles.button} onClick={() => setCounter(prev => prev +1)}>+</button>
-                    { counter }
+                    <button style={styles.button} onClick={() => setCounter(prev => prev + 1)}>+</button>
+                    {counter}
                 </div>
                 <div>Представим, что мы меняем title страницы</div>
-                Title: { title }
+                Title: {title}
             </div>
         )
     }
 };
 
-const styles: { container: CSSProperties, button: CSSProperties  } = {
+const styles: { container: CSSProperties, button: CSSProperties } = {
     container: {
         display: 'flex',
         flexDirection: 'column',
@@ -70,8 +71,8 @@ export const SetTimeoutExample: Story = {
         return (
             <div>
                 Hello: {counter}, {fake}
-                <button onClick={() => setCounter(prev => prev + 1)} >counter+</button>
-                <button onClick={() => setFake(prev => prev + 1)} >fake+</button>
+                <button onClick={() => setCounter(prev => prev + 1)}>counter+</button>
+                <button onClick={() => setFake(prev => prev + 1)}>fake+</button>
             </div>
         )
     }
