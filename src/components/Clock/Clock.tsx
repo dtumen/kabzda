@@ -8,7 +8,7 @@ export const Clock = () => {
         let timeoutId = setInterval(() => {
         console.log('TICK');
             setDate(new Date());
-        })
+        }, 1000)
 
         return () => clearInterval(timeoutId);
 
