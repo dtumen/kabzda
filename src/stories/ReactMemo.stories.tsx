@@ -1,8 +1,7 @@
 import type {Meta, StoryObj} from '@storybook/react';
 
 
-import React, {memo, useState} from 'react';
-import {Clock} from '../components/Clock/Clock';
+import React, {useState} from 'react';
 
 
 const meta: Meta = {

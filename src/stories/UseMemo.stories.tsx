@@ -10,7 +10,7 @@ export default meta;
 
 type Story = StoryObj;
 
-export const DifficultCountingExample: StoryObj = {
+export const DifficultCountingExample: Story = {
     parameters: {
         layout: 'centered',
     },
