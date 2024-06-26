@@ -1,41 +1,79 @@
-import type { Meta } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import type {Meta, StoryObj} from '@storybook/react';
 
-import {Rating} from '../components/Rating/Rating';
+
 import React, {memo, useState} from 'react';
+import {Clock} from '../components/Clock/Clock';
 
 
-const meta: Meta<typeof Rating> = {
-    component: Rating,
+const meta: Meta = {
+    title: 'React/memo',
+    tags: ['autodocs'],
 };
 
 export default meta;
 
-export const UsersSecret = (props: { users: Array<string> }) => {
+type Story = StoryObj;
+
+const UsersSecret = (props: { users: Array<string> }) => {
     console.log('UserSecret component render')
     return (
-        <div>
-            {props.users && props.users.map((u: string, i) => <p key={i}>{u}</p>) }
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {props.users && props.users.map((u: string, i) => <div key={i}>{u}</div>)}
         </div>
     )
 }
 
 const Users = React.memo(UsersSecret);
 
-export const Counter = () => {
-    const [count, setCount] = useState(0);
-    const [users, setUsers] = useState(['John, Adam, Michel']);
+export const CounterExample: Story = {
+    parameters: {
+        layout: 'centered',
+    },
+    render: () => {
 
-    const addUser = () => {
-        setUsers([...users, 'Sveta'])
+        const [count, setCount] = useState(0);
+        const [users, setUsers] = useState(['John, Adam, Michel']);
+
+        const addUser = () => {
+            setUsers([...users, 'Sveta'])
+        }
+
+        return (
+            <div style={styles.container}>
+                <div style={styles.counter}>
+                    <button style={styles.button} onClick={() => setCount(count + 1)}>+</button>
+                    {count}
+                    <button style={styles.button} onClick={addUser}>addUser</button>
+                </div>
+                <Users users={users}/>
+            </div>
+        )
     }
+}
 
-    return (
-        <div>
-            <button onClick={() => setCount(count + 1)}>+</button>
-            {count}
-            <button onClick={addUser}>addUser</button>
-            <Users users={users}/>
-        </div>
-    )
+type StylesType = {
+    container: React.CSSProperties
+    counter: React.CSSProperties
+    button: React.CSSProperties
+}
+
+const styles: StylesType = {
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '20px'
+    },
+
+    counter: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '20px',
+    },
+
+    button: {
+        minWidth: '60px',
+        height: '30px',
+        backgroundColor: '#44a4e1',
+    }
 }

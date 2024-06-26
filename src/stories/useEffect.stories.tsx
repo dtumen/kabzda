@@ -26,9 +26,9 @@ export const Counter: Story = {
 
         return (
             <div style={styles.container}>
-                <div>
+                <div style={styles.counter}>
                     <button style={styles.button} onClick={() => setCounter(prev => prev + 1)}>+</button>
-                    {counter}
+                    <p>{counter}</p>
                 </div>
                 <div>Представим, что мы меняем title страницы</div>
                 Title: {title}
@@ -37,14 +37,31 @@ export const Counter: Story = {
     }
 };
 
-const styles: { container: CSSProperties, button: CSSProperties } = {
+type StylesType = {
+    container: CSSProperties
+    button: CSSProperties
+    counter: CSSProperties
+}
+
+const styles: StylesType = {
     container: {
         display: 'flex',
         flexDirection: 'column',
         gap: '10px'
     },
     button: {
-        width: '100px',
+        minWidth: '50px',
+        height: '25px',
+        borderRadius: '5px',
+        backgroundColor: '#2f9ee7',
+        color: '#fff'
+    },
+
+    counter: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '30px'
     }
 }
 
@@ -68,10 +85,10 @@ export const SetTimeoutExample: Story = {
         }, [counter]);
 
         return (
-            <div>
-                Hello: {counter}, {fake}
-                <button onClick={() => setCounter(prev => prev + 1)}>counter+</button>
-                <button onClick={() => setFake(prev => prev + 1)}>fake+</button>
+            <div style={styles.container}>
+                Counter: {counter}, Fake: {fake}
+                <button style={styles.button} onClick={() => setCounter(prev => prev + 1)}>counter+</button>
+                <button style={styles.button} onClick={() => setFake(prev => prev + 1)}>fake+</button>
             </div>
         )
     }
