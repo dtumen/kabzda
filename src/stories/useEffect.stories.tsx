@@ -103,10 +103,6 @@ export const SetIntervalExample: Story = {
                 <div>
                     counter: {counter},
                 </div>
-
-                <div>
-                    fake: {fake}
-                </div>
             </>
         )
     }
