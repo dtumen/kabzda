@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react';
 
-import UnControlled from '../components/UnControlledOnOff/UnControlledOnOff';
+import UnControlled from './UnControlledOnOff';
 
 const meta: Meta<typeof UnControlled> = {
   component: UnControlled,

@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react';
 
-import OnOff from '../components/OnOff/OnOff';
+import OnOff from './OnOff';
 import {useState} from 'react';
 
 const meta: Meta<typeof OnOff> = {

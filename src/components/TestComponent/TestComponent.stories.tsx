@@ -1,5 +1,5 @@
 import type {Meta} from '@storybook/react';
-import {TestComponent} from '../components/TestComponent/TestComponent';
+import {TestComponent} from './TestComponent';
 import {ChangeEvent, useRef, useState} from 'react';
 
 const meta: Meta<typeof TestComponent> = {

@@ -1,6 +1,6 @@
 import type {Meta} from '@storybook/react';
-import {Select} from '../components/Select/Select';
-import {ItemType} from '../components/Accordion/Accordion';
+import {Select} from './Select';
+import {ItemType} from '../Accordion/Accordion';
 import React, {useEffect, useState} from 'react';
 
 
