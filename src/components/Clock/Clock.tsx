@@ -6,7 +6,6 @@ export const Clock = () => {
 
     useEffect(() => {
         let timeoutId = setInterval(() => {
-        console.log('TICK');
             setDate(new Date());
         }, 1000)
 
