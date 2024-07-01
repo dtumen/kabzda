@@ -124,3 +124,62 @@ export const SetIntervalExample: Story = {
         )
     }
 }
+
+export const ResetEffectExample: Story = {
+    parameters: {
+        layout: 'centered',
+    },
+
+    render: () => {
+        const [counter, setCounter] = useState(1);
+
+        console.log('Component rendered with ' + counter);
+
+        useEffect(() => {
+            console.log('Effect occurred: ==>  ' + counter);
+
+            return () => {
+                console.log('RESET EFFECT: ' + counter);
+            };
+
+        }, [counter]);
+
+        return (
+            <>
+                Hello, counter: {counter} <button onClick={() => setCounter(counter + 1)}>+</button>
+            </>
+        )
+    }
+}
+
+export const ResetTextEffectExample: Story = {
+    parameters: {
+        layout: 'centered',
+    },
+
+    render: () => {
+        const [text, setText] = useState('');
+
+        useEffect(() => {
+
+            const handleKeyPress = (e: KeyboardEvent) => {
+                console.log("KEY: ", e.key);
+                setText(e.key);
+            }
+
+            window.addEventListener('keypress', handleKeyPress)
+
+            return () => {
+                console.log('RESET EFFECT: ' + text);
+                window.removeEventListener('keypress', handleKeyPress);
+            };
+
+        }, [text]);
+
+        return (
+            <>
+                Text: {text}
+            </>
+        )
+    }
+}
