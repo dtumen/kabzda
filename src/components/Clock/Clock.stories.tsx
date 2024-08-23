@@ -10,7 +10,7 @@ export default meta;
 
 type Story = StoryObj;
 
-export const ClockExample: Story = {
+export const DigitalClock: Story = {
     parameters: {
         layout: 'centered',
     },
